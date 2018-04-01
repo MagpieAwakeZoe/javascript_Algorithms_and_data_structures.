@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function HashTable() {
+        let size = 0;
+        let entry = {};
+        this.add = function (key, value) {
+            if (!this.containsKey(key)) {
+                size++;
+            }
+            entry[key] = value;
+        };
+        this.getValue = function (key) {
+            return this.containsKey(key) ? entry[key] : null;
+        };
+        this.remove = function (key) {
+            if (this.containsKey(key) && (delete entry[key])) {
+                size--;
+            }
+        };
+        this.containsKey = function (key) {
+            return (key in entry);
+        };
+        this.containsValue = function (value) {
+            for (let prop in entry) {
+                if (entry[prop] === value) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        this.getValues = function () {
+            let values = [];
+            for (let prop in entry) {
+                values.push(entry[prop]);
+            }
+            return values;
+        };
+        this.getKeys = function () {
+            let keys = [];
+            for (let prop in entry) {
+                keys.push(prop);
+            }
+            return keys;
+        };
+        this.getSize = function () {
+            return size;
+        };
+        this.clear = function () {
+            size = 0;
+            entry = {};
+        }
+    }
+
+    let hashtable = new HashTable();
+    hashtable.add("name1","John");
+    hashtable.add("name2","Bob");
+    let name1 = hashtable.getValue("name1");
+    console.log(name1);
+</script>
+</body>
+</html>

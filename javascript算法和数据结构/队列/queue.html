@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    // 创建队列和队列的方法
+    function Queue() { 
+ 
+    var items = []; 
+ 
+    this.enqueue = function(element){         //向队列尾部添加一个（或多个）新的项。 
+            items.push(element);    
+      }; 
+ 
+    this.dequeue = function(){                //移除队列的第一（即排在队列最前面的）项，并返回被移除的元素。 
+            return items.shift();   
+      }; 
+
+    this.front = function(){                  //：返回队列中第一个元素——最先被添加，也将是最先被移除的元素。队列不 做任何变动
+          return items[0];    
+      }; 
+ 
+    this.isEmpty = function(){                //如果队列中不包含任何元素，返回true，否则返回false。 
+            return items.length == 0;  
+      }; 
+ 
+    this.clear = function(){                  //清空队列
+           items = [];    
+      }; 
+ 
+    this.size = function(){                   //返回队列包含的元素个数，与数组的length属性类似
+           return items.length;    
+      }; 
+    this.print = function(){                  //打印出队列元素
+      console.log(items.toString());    
+      }; 
+     } 
+
+      //使用queue类并初始化
+      var queue = new Queue();
+      console.log(queue.isEmpty());           //输出true 
+      queue.enqueue("John");
+      queue.enqueue("Jack"); 
+      queue.enqueue("Camila"); 
+      queue.print();                          //John,Jack,Camila
+      console.log(queue.size());              //输出3 
+      console.log(queue.isEmpty());           //输出false 
+      queue.dequeue();                        //清除队列第一个元素
+      queue.dequeue();                        //清除队列第一个元素
+      queue.print();                          //剩下最后一个元素,Camila
+    </script>
+</body>
+</html>
+

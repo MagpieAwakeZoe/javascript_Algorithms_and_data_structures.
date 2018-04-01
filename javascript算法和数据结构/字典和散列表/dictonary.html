@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //字典类
+    function Dictionary () {
+        this.dataStore = [];
+        this.add = add;         // 添加元素
+        this.find = find;       // 查找元素
+        this.remove = remove;   // 删除元素
+        this.count = count;     // 字典中元素个数
+        this.showAll = showAll; // 显示字典元素
+        this.clear = clear;     // 清空字典
+    }
+    //向字典添加元素
+    function add( key , value ){
+        this.dataStore[key] = value;
+    }
+    //查找字典中的元素
+    function find( key ){
+        return this.dataStore[key];
+    }
+    //删除一个元素
+    function remove( key ){
+        if( this.dataStore[key] ) delete this.dataStore[key];
+        else return 'Not Found';
+    }
+    //显示字典元素
+    function showAll () {
+        for( let key in this.dataStore ){
+            console.log( key + '->' + this.dataStore[key] );
+        }
+    }
+    //查看字典中元素的个数
+    function count(){
+        let n = 0 ;
+        for ( let key in this.dataStore ){
+            ++n;
+        }
+        return n;
+    }
+    //清空字典
+    function clear(){
+        for( let key in this.dataStore ){
+            delete this.dataStore[key];
+        }
+    }
+    //实例化字典类
+    let directory = new Dictionary();
+    //添加元素
+    directory.add( 'Jack' , '138****5505' );
+    directory.add( 'Alice' , '156****6606');
+    directory.add( 'Tom' , '180****8808');
+    //显示字典
+    directory.showAll();         // Jack->138****5505
+                                 // Alice->156****6606
+                                 // Tom->180****8808
+    directory.remove( 'Tom' );
+    directory.showAll();         // Jack->138****5505
+                                 // Alice->156****6606
+</script>
+</body>
+</html>

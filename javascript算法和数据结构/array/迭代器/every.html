@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+   	//every使用指定函数检测数组里所有的元素
+   	var isEven = function(x){
+   		return(x%2==0);
+   	}
+
+   	var number = [1,2,3,4,5,6,7,8,9,10];
+   	var result = number.every(isEven);			//数组.every(判断的函数)
+   	console.log(result);						//false
+  </script>
+</body>
+</html>
+

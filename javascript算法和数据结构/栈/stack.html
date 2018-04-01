@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+    // 创建栈和栈的方法
+    function Stack() { 
+ 
+    var items = []; 
+ 
+    this.push = function(element){          //push(element(s))：添加一个（或几个）新元素到栈顶。 
+      items.push(element);     
+    }; 
+ 
+    this.pop = function(){                  //pop()：移除栈顶的元素，同时返回被移除的元素。 
+      return items.pop();     
+    }; 
+ 
+    this.peek = function(){                 //peek()：返回栈顶的元素，不对栈做任何修改（这个方法不会移除栈顶的元素，仅仅返 回它）
+      return items[items.length-1];     
+    }; 
+ 
+    this.isEmpty = function(){              //isEmpty()：如果栈里没有任何元素就返回true，否则返回false。 
+      return items.length == 0;     
+    }; 
+ 
+    this.size = function(){                 //size()：返回栈里的元素个数。这个方法和数组的length属性很类似。  
+      return items.length;    
+    }; 
+ 
+    this.clear = function(){                //clear()：移除栈里的所有元素
+      items = [];     
+    }; 
+ 
+    this.print = function(){                //打印栈里的元素
+      console.log(items.toString());    
+    }; 
+  } 
+
+     //初始化栈
+     var stack = new Stack();
+     console.log(stack.isEmpty()); //输出为true 
+
+      stack.push(5);
+      stack.push(8);
+
+      console.log(stack.peek());   //返回8,栈顶元素
+      stack.push(10);
+      stack.push(12);
+      stack.pop();                 //除去栈的最后一个元素
+      stack.print();               //打印出5,8,10
+    </script>
+</body>
+</html>
+

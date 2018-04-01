@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //先将交换元素部分抽象出来
+    function swap(i,j,array){
+        let temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
+    }
+
+    function heapAdjust(array, i, length) {//堆调整
+        let left = 2 * i + 1,
+            right = 2 * i + 2,
+            largest = i;
+        if (left < length && array[largest] < array[left]) {
+            largest = left;
+        }
+        if (right < length && array[largest] < array[right]) {
+            largest = right;
+        }
+        if (largest !== i) {
+            swap(i, largest, array);
+            heapAdjust(array, largest, length);
+        }
+    }
+    function heapSort(array) {
+        //建立大顶堆
+        length = array.length;
+        for (let i = length>>1; i >= 0; i--) {
+            heapAdjust(array, i, length);
+        }
+        //调换第一个与最后一个元素,重新调整为大顶堆
+        for (let i = length - 1; i > 0; i--) {
+            swap(0, i, array);
+            heapAdjust(array, 0, --length);
+        }
+        return array;
+    }
+
+    //测试
+    let array = [4,3,8,9,7,6,1,5,2];
+    let result = heapSort(array);
+    console.log(result);
+</script>
+</body>
+</html>

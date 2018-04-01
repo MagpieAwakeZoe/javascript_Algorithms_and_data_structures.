@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //内/外层循环均是正序遍历
+    //先将交换元素部分抽象出来
+    function swap(i,j,array){
+        let temp = array[j];
+        array[j] = array[i];
+        array[i] = temp;
+    }
+
+    function bubbleSort(array) {
+        let length = array.length, isSwap;
+        for (let i = 0; i < length; i++) {            //正序
+            isSwap = false;
+            for (let j = 0; j < length - 1 - i; j++) {     //正序
+                array[j] > array[j+1] && (isSwap = true) && swap(j,j+1,array);
+            }
+            if(!isSwap)
+                break;
+        }
+        return array;
+    }
+
+    //测试
+    let array = [2,3,5,1,9,7,8,6];
+    let result = bubbleSort(array);
+    console.log(result);        //(8) [1, 2, 3, 5, 6, 7, 8, 9]
+</script>
+</body>
+</html>

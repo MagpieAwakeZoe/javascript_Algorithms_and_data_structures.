@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+  	//根据自定义的函数进行sort排序
+ 		var friends = [
+ 		{
+ 			name:"john",
+ 			age:30
+ 		},
+ 		{
+ 			name:"Bob",
+ 			age:27
+ 		},
+ 		{
+ 			name:"Lucy",
+ 			age:20
+ 		},
+ 		{
+ 			name:"Windy",
+ 			age:19
+ 		}
+ 		];
+
+ 		var age = function(a,b){
+ 			if(a.age>b.age){
+ 				return true;
+ 			}else if(a.age<b.age){
+ 				return false;
+ 			}else{
+ 				return 0;
+ 			}
+ 		}
+
+ 		var result = friends.sort(age);
+ 		console.log(result);
+
+
+ 		/*
+		(4) [{…}, {…}, {…}, {…}]
+			0: {name: "Windy", age: 19}
+			1: {name: "Lucy", age: 20}
+			2: {name: "Bob", age: 27}
+			3: {name: "john", age: 30}
+		length: 4
+			__proto__: Array(0)
+ 		*/
+  </script>	
+</body>
+</html>
+

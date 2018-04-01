@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+ 	//树的深度：在于节点的祖先节点个数
+    //树的高度：在于所有节点深度的最大值
+    /*
+    BinarySearchTree的缺点就是：
+    1. 所有的数据你必须在刚开始一个一个的添加到tree中，而这个过程的复杂度为O(n(log n))，因为你需要遍历整个数据O(n)，然后一个一个加进去O(log n)。
+    2. 同时用Tree来存储肯定增大了原来的数据占的空间，因为你还需要定义left, right, root这些东西
+    3. 对于BinarySearchTree是不能有数据重复的。
+    4.数据最好是无序的，如果拿到的数据是有序的，那么上面的方法用的都是最差复杂度
+    */
+
+
+
+//    二叉搜索树则是二叉树的一种，但它只允许你在左侧节点储存比父节点小的值，右侧只允许储存比父节点大的值。
+//        Binary_Search_Tree
+
+    //节点定义
+
+    function Node (data , left , right) {
+        this.data = data;       // 数据
+        this.left = left;       // 左节点
+        this.right = right;     // 右节点
+        this.show = show;       // 显示节点数据
+    }
+
+    function show(){
+        return this.data;
+    }
+
+    //二叉查找树（BST）的类
+
+    function BST(){
+        this.root = null;           // 根节点
+        this.insert = insert;       // 插入节点
+        this.inOrder = inOrder;     // 中序遍历
+        this.preOrder = preOrder;   // 先序遍历
+        this.postOrder = postOrder; // 后序遍历
+        this.find = find;           // 查找节点
+        this.getMin = getMin;       // 查找最小值
+        this.getMax = getMax;       // 查找最大值
+        this.remove = remove;       // 删除节点
+    }
+
+    //插入新节点
+
+    function insert(data) {
+        let n = new Node( data , null , null );
+        if( this.root === null ){
+            this.root = n;
+        }else{
+            let current = this.root;
+            let parent;
+            while( true ){
+                parent = current;
+                if( data < current.data ){
+                    current = current.left;
+                    if( current === null ){
+                        parent.left = n ;
+                        break;
+                    }
+                }else{
+                    current = current.right;
+                    if( current === null ){
+                        parent.right = n;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+    //测试中序遍历
+    let nums = new BST();
+    //插入数据
+    nums.insert(23);
+    nums.insert(45);
+    nums.insert(16);
+    nums.insert(37);
+    nums.insert(3);
+    nums.insert(99);
+    nums.insert(22);
+
+    //中序遍历
+    function inOrder (node) {
+        if( !(node === null )){
+            inOrder( node.left );
+            console.log( node.show() + ' ');
+            inOrder( node.right );
+        }
+    }
+
+    console.log("Inorder traversal: ");
+    inOrder(nums.root);
+
+    // Inorder traversal:
+    // 3 16 22 23 37 45 99
+
+    //先序遍历
+
+    function preOrder( node ) {
+        if( !(node === null )){
+            console.log( node.show() + ' ');
+            preOrder( node.left );
+            preOrder( node.right );
+        }
+    }
+
+    //测试先序遍历
+    console.log("Preorder traversal: ");
+    preOrder(nums.root);
+
+    // Preorder traversal:
+    // 23 16 3 22 45 37 99
+
+    //后序遍历
+
+    function postOrder ( node ) {
+        if( !(node === null ) ){
+            postOrder( node.left );
+            postOrder( node.right );
+            console.log( node.show() + ' ');
+        }
+    }
+
+    //测试后序遍历
+    // 后序遍历
+
+    console.log("Postorder traversal: ");
+    postOrder(nums.root);
+
+    // Postorder traversal:
+    // 3 22 16 37 99 45 23
+
+    //查找最小值
+
+    function getMin( ) {
+        let current = this.root;
+        while ( !( current.left === null ) ){
+            current = current.left;
+        }
+        return current.show();
+    }
+
+    //查找最大值
+
+    function getMax () {
+        let current = this.root;
+        while ( !( current.right === null ) ) {
+            current = current.right;
+        }
+        return current.show();
+    }
+
+    //测试查找最大最小值
+    // 最小值
+    console.log('min:' + nums.getMin() );       // min : 3
+
+    //最大值
+    console.log('max:' + nums.getMax() );       // max : 99
+
+    //查找给定值
+
+    function find ( data ) {
+        let current = this.root;
+        while ( current !== null ){
+            if( current.data === data ){
+                return current;
+            }else if( current.data < data ){
+                current = current.right;
+            }else{
+                current = current.left;
+            }
+        }
+        return null;
+    }
+
+    //查找不存在的值
+    console.log('find:' + nums.find(66));       // find : null
+
+    //查找存在的值
+    console.log('find:' + nums.find(99) );      // find : [object Object]
+
+    //删除操作
+
+    function remove( data ) {
+        removeNode( this.root , data);
+    }
+
+    //查找最小值
+
+    function getSmallest(node) {
+        if (node.left === null) {
+            return node;
+        }
+        else {
+            return getSmallest(node.left);
+        }
+    }
+
+    //删除节点
+    function removeNode( node , data ) {
+        if( node === null ) {
+            return null;
+        }
+        if(data === node.data) {
+            // 没有子节点的节点
+            if(node.left === null && node.right === null) {
+                return null;
+            }
+            // 没有左子节点的节点
+            if(node.left === null) {
+                return node.right;
+            }
+            // 没有右子节点的节点
+            if(node.right === null) {
+                return node.left;
+            }
+            // 有2个子节点的节点
+            let tempNode = getSmallest(node.right);
+            node.data = tempNode.data;
+            node.right = removeNode(node.right,tempNode.data);
+            return node;
+
+        }else if(data < node.data) {
+            node.left = removeNode( node.left,data);
+            return node;
+        }else {
+            node.right = removeNode( node.right,data);
+            return node;
+        }
+    }
+
+    //测试删除节点
+    //删除根节点
+    nums.remove(23);
+
+    inOrder(nums.root);
+
+    // 3 16 22 37 45 99
+
+  </script>
+</body>
+</html>
+

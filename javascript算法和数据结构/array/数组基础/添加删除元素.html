@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+  <script type="text/javascript">
+  	var number = [0,1,2,3,4,5];
+  	number.push(6);				//添加元素   							0,1,2,3,4,5,6
+  	number.push(7,8);			//添加多个元素   							0,1,2,3,4,5,6,7,8
+  	number[number.length] = 9;	// 添加到最后一个空位上 				    0,1,2,3,4,5,6,7,8,9
+  	number.unshift(-1);			//在数组第一位加上					   -1,0,1,2,3,4,5,6,7,8,9
+  	number.pop();				//在数组里除去最后一个元素，模拟栈		   -1,0,1,2,3,4,5,6,7,8
+  	number.shift();				//在数组里除去第一个元素				    0,1,2,3,4,5,6,7,8
+  	number.splice(2,0,10,11,12);//在数组里除去序列?的?个，并添加???		0,1,10,11,12,2,3,4,5,6,7,8			从序列2开始删除0个，插入11,12,13
+  	console.log(number);
+  </script>
+</body>
+</html>
+
